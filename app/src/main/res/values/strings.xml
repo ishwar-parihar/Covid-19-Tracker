@@ -9,5 +9,7 @@
     <string name="country_name">Country Name</string>
     <string name="total_cases">Total Cases</string>
     <string name="search_country">Search Country</string>
+    <string name="home">Home</string>
+    <string name="vaccination">Vaccination</string>
 
 </resources>

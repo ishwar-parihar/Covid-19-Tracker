@@ -1,14 +1,19 @@
 package com.ishwar.coronatracker;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.ishwar.coronatracker.Api.ApiInterface;
 import com.ishwar.coronatracker.Modal.CountryData;
@@ -31,24 +36,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.ishwar.coronatracker.Api.ApiInterface.BASE_URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Fragment {
     ActivityMainBinding binding;
     List<CountryData> list = new ArrayList<>();
     String country;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        if (getIntent().getStringExtra("country")!=null){
-            country=getIntent().getStringExtra("country");
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.activity_main, container, false);
+        if (getActivity().getIntent().getStringExtra("country") != null) {
+            country = getActivity().getIntent().getStringExtra("country");
         }
         binding.countryTv.setText(country);
         binding.countryTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,CountryActivity.class));
+                startActivity(new Intent(getContext(), CountryActivity.class));
             }
         });
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -57,53 +61,54 @@ public class MainActivity extends AppCompatActivity {
         apiInterface.getCountryData().enqueue(new Callback<List<CountryData>>() {
             @Override
             public void onResponse(Call<List<CountryData>> call, Response<List<CountryData>> response) {
-            list.addAll(response.body());
-                Handler handler=new Handler();
+                list.addAll(response.body());
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         binding.mPrograssBar.setVisibility(View.GONE);
                         binding.mScrollView.setVisibility(View.VISIBLE);
                     }
-                },5000);
-           for (int i=0;i<list.size();i++){
-               if (list.get(i).getCountry().equals(country));
-               int confirm= Integer.parseInt(list.get(i).getCases());
-               int active= Integer.parseInt(list.get(i).getActive());
-               int recovered= Integer.parseInt(list.get(i).getRecovered());
-               int death= Integer.parseInt(list.get(i).getDeaths());
+                }, 5000);
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getCountry().equals(country)) ;
+                    int confirm = Integer.parseInt(list.get(i).getCases());
+                    int active = Integer.parseInt(list.get(i).getActive());
+                    int recovered = Integer.parseInt(list.get(i).getRecovered());
+                    int death = Integer.parseInt(list.get(i).getDeaths());
 
-               binding.totalConfirm.setText(NumberFormat.getInstance().format(confirm));
-               binding.totalActive.setText(NumberFormat.getInstance().format(active));
-               binding.totalRecovered.setText(NumberFormat.getInstance().format(recovered));
-               binding.totalDeath.setText(NumberFormat.getInstance().format(death));
-
-
-                setText(list.get(i).getUpdated());
-
-               binding.confirmPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayCases())));
-               binding.deathPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayDeaths())));
-               binding.recoveredPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayRecovered())));
-               binding.totalTest.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTests())));
+                    binding.totalConfirm.setText(NumberFormat.getInstance().format(confirm));
+                    binding.totalActive.setText(NumberFormat.getInstance().format(active));
+                    binding.totalRecovered.setText(NumberFormat.getInstance().format(recovered));
+                    binding.totalDeath.setText(NumberFormat.getInstance().format(death));
 
 
+                    setText(list.get(i).getUpdated());
 
-               binding.piechart.addPieSlice(new PieModel("Confirm", confirm,getResources().getColor(R.color.yellow)));
-               binding.piechart.addPieSlice(new PieModel("Active", active,getResources().getColor(R.color.blue)));
-               binding.piechart.addPieSlice(new PieModel("Recovered", recovered,getResources().getColor(R.color.green)));
-               binding.piechart.addPieSlice(new PieModel("Death", death, getResources().getColor(R.color.red)));
-               binding.piechart.startAnimation();
-           }
+                    binding.confirmPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayCases())));
+                    binding.deathPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayDeaths())));
+                    binding.recoveredPatientAdd.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTodayRecovered())));
+                    binding.totalTest.setText(NumberFormat.getInstance().format(Integer.parseInt(list.get(i).getTests())));
+
+
+                    binding.piechart.addPieSlice(new PieModel("Confirm", confirm, getResources().getColor(R.color.yellow)));
+                    binding.piechart.addPieSlice(new PieModel("Active", active, getResources().getColor(R.color.blue)));
+                    binding.piechart.addPieSlice(new PieModel("Recovered", recovered, getResources().getColor(R.color.green)));
+                    binding.piechart.addPieSlice(new PieModel("Death", death, getResources().getColor(R.color.red)));
+                    binding.piechart.startAnimation();
+                }
 
             }
 
             @Override
             public void onFailure(Call<List<CountryData>> call, Throwable t) {
-                Log.e("msg",t.getLocalizedMessage());
+                Log.e("msg", t.getLocalizedMessage());
             }
         });
-
+        return binding.getRoot();
     }
+
+
 
     @SuppressLint("SetTextI18n")
     private void setText(String updated) {

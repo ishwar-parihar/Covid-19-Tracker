@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoronaTracker"
         android:windowSoftInputMode="stateHidden">
-        <activity android:name="com.ishwar.coronatracker.CountryActivity" android:windowSoftInputMode="stateHidden"> </activity>
-        <activity android:name="com.ishwar.coronatracker.SplashActivity">
+        <activity android:name=".HomeActivity"></activity>
+        <activity
+            android:name=".CountryActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ishwar.coronatracker.MainActivity" android:windowSoftInputMode="stateHidden">
-
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

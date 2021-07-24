@@ -28,22 +28,23 @@ import static com.ishwar.coronatracker.Api.ApiInterface.BASE_URL;
 
 public class CountryActivity extends AppCompatActivity {
     ActivityCountryBinding binding;
-    ArrayList<CountryData> list=new ArrayList<>();
+    ArrayList<CountryData> list = new ArrayList<>();
     CountryAdapter countryAdapter;
-    String country="India";
+    String country = "India";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_country);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_country);
 
-        countryAdapter=new CountryAdapter(this,list);
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
+        countryAdapter = new CountryAdapter(this, list);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         binding.countryRecycleView.setAdapter(countryAdapter);
         apiInterface.getCountryData().enqueue(new Callback<List<CountryData>>() {
             @Override
             public void onResponse(Call<List<CountryData>> call, Response<List<CountryData>> response) {
-                Handler handler=new Handler();
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -51,14 +52,14 @@ public class CountryActivity extends AppCompatActivity {
                         binding.countryRecycleView.setVisibility(View.VISIBLE);
 
                     }
-                },5000);
-            list.addAll(response.body());
-            countryAdapter.notifyDataSetChanged();
+                }, 5000);
+                list.addAll(response.body());
+                countryAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<CountryData>> call, Throwable t) {
-                Log.e("Response",t.getLocalizedMessage());
+                Log.e("Response", t.getLocalizedMessage());
 
             }
         });
@@ -75,19 +76,17 @@ public class CountryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-            filter(s.toString());
+                filter(s.toString());
             }
         });
-
-
 
 
     }
 
     private void filter(String Text) {
-        ArrayList<CountryData> filterList=new ArrayList<>();
-        for(CountryData items:list){
-            if (items.getCountry().toLowerCase().contains(Text.toLowerCase())){
+        ArrayList<CountryData> filterList = new ArrayList<>();
+        for (CountryData items : list) {
+            if (items.getCountry().toLowerCase().contains(Text.toLowerCase())) {
                 filterList.add(items);
             }
         }

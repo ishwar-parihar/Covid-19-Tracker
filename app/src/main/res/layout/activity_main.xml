@@ -7,7 +7,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
         android:background="#D2000000">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -194,8 +193,8 @@
             app:layout_constraintTop_toBottomOf="@id/layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="50dp"
-            android:indeterminateTint="#F63F53"/>
+            android:indeterminateTint="#F63F53"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ScrollView
             android:id="@+id/mScrollView"

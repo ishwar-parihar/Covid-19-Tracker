@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ishwar.coronatracker.HomeActivity;
 import com.ishwar.coronatracker.MainActivity;
 import com.ishwar.coronatracker.Modal.CountryData;
 import com.ishwar.coronatracker.R;
@@ -55,7 +56,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, MainActivity.class);
+                Intent intent=new Intent(context, HomeActivity.class);
                 intent.putExtra("country",countryData.getCountry());
                 context.startActivity(intent);
             }
