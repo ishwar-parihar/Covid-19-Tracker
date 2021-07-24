@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CountryActivity"
+    android:background="#D2000000">
+
+    <EditText
+        android:id="@+id/search_country_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/search_background"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawableStart="@drawable/ic_search"
+        android:padding="10dp"
+        android:hint="@string/search_country"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="17sp"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:drawablePadding="4dp"/>
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/search_country_edit"/>
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/countryLayout"
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       app:layout_constraintTop_toBottomOf="@id/view_1"
+       app:layout_constraintStart_toStartOf="parent"
+       android:background="@color/black">
+
+       <TextView
+           android:id="@+id/countryName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           android:text="@string/country_name"
+           android:textSize="18sp"
+           android:textColor="@color/white"
+           android:fontFamily="@font/rubik_regular"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:layout_marginLeft="10dp"/>
+
+       <TextView
+           android:id="@+id/total_cases_tv"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           android:text="@string/total_cases"
+           android:textSize="18sp"
+           android:textColor="@color/white"
+           android:fontFamily="@font/rubik_regular"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:layout_marginRight="10dp"
+           android:layout_marginEnd="10dp" />
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1.5dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:background="@color/black"/>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/mPrograssBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/view_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        android:indeterminateTint="#F63F53"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/countryLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/country_item_layout"
+        android:background="#D2000000"
+        android:id="@+id/countryRecycleView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

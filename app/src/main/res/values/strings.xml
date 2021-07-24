@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Corona Tracker</string>
+    <string name="confirm">Confirm</string>
+    <string name="active">Active</string>
+    <string name="recovered">Recovered</string>
+    <string name="death">Death</string>
+    <string name="tests">Tests</string>
+    <string name="developed_by_ishwar">Developed By Ishwar</string>
+    <string name="country_name">Country Name</string>
+    <string name="total_cases">Total Cases</string>
+    <string name="search_country">Search Country</string>
+
+</resources>
