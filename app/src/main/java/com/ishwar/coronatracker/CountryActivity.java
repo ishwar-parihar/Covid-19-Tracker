@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ishwar.coronatracker.Api.ApiInterface;
 import com.ishwar.coronatracker.Modal.CountryData;
@@ -60,6 +61,7 @@ public class CountryActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<CountryData>> call, Throwable t) {
                 Log.e("Response", t.getLocalizedMessage());
+                Toast.makeText(CountryActivity.this, "Time out", Toast.LENGTH_SHORT).show();
 
             }
         });

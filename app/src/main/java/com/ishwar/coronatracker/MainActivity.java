@@ -66,7 +66,6 @@ public class MainActivity extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        binding.mPrograssBar.setVisibility(View.GONE);
                         binding.mScrollView.setVisibility(View.VISIBLE);
                     }
                 }, 5000);

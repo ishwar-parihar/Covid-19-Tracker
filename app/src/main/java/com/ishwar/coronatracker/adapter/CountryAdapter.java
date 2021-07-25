@@ -2,6 +2,8 @@ package com.ishwar.coronatracker.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.ishwar.coronatracker.Modal.CountryData;
 import com.ishwar.coronatracker.R;
 import com.ishwar.coronatracker.databinding.CountryItemLayoutBinding;
 
+import java.net.URI;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Map;
@@ -58,6 +61,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
             public void onClick(View v) {
                 Intent intent=new Intent(context, HomeActivity.class);
                 intent.putExtra("country",countryData.getCountry());
+                intent.putExtra("my_flag",img.get("flag"));
                 context.startActivity(intent);
             }
         });

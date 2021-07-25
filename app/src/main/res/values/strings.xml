@@ -11,5 +11,14 @@
     <string name="search_country">Search Country</string>
     <string name="home">Home</string>
     <string name="vaccination">Vaccination</string>
+    <string name="Vaccination">Vaccination</string>
+    <string name="Details">Details</string>
+    <string name="enter_pincode_of_your_area">Enter Pincode Of Your Area</string>
+    <string name="search">Search</string>
+    <string name="vaccination_center">Vaccination Center</string>
+    <string name="location">Location</string>
+    <string name="vaccination_time">Vaccination Time</string>
+    <string name="age">Age</string>
+    <string name="available">Available</string>
 
 </resources>
