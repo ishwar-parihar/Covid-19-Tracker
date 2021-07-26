@@ -38,6 +38,21 @@
             app:layout_constraintTop_toBottomOf="@id/vaccination_center" />
 
         <TextView
+            android:id="@+id/vaccination_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_baseline_train_24"
+            android:drawableLeft="@drawable/ic_baseline_train_24"
+            android:drawablePadding="5dp"
+            android:padding="5dp"
+            android:text="@string/location"
+            android:textColor="#384357"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/vaccination_location"
+            app:layout_constraintTop_toBottomOf="@id/vaccination_location" />
+
+        <TextView
             android:id="@+id/vaccination_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +64,8 @@
             android:text="@string/vaccination_time"
             android:textColor="#384357"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/vaccination_center"
-            app:layout_constraintTop_toBottomOf="@id/vaccination_location" />
+            app:layout_constraintStart_toStartOf="@id/vaccination_city"
+            app:layout_constraintTop_toBottomOf="@id/vaccination_city" />
 
         <TextView
             android:id="@+id/vaccination_name"

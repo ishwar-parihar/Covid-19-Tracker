@@ -10,6 +10,16 @@ public class VaccinationModal {
     private String vaccineCenterAddress;
     private String vaccineAvailable;
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    private String city;
+
     public VaccinationModal() {
     }
 

@@ -113,6 +113,7 @@ public class VaccinationFragment extends Fragment {
                             vaccinationModal.setVaccineTimings(centerObject.getString("from"));
                             vaccinationModal.setVaccineCenterTime(centerObject.getString("to"));
                             vaccinationModal.setVaccinationCharges(centerObject.getString("fee_type"));
+                            vaccinationModal.setCity(centerObject.getString("district_name"));
 
                             JSONObject sessionsObject = centerObject.getJSONArray("sessions").getJSONObject(0);
                             vaccinationModal.setVaccineAge(sessionsObject.getString("min_age_limit"));

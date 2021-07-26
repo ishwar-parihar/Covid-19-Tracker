@@ -46,6 +46,7 @@ public class VaccineInfoAdapter extends RecyclerView.Adapter<VaccineInfoAdapter.
     holder.binding.vaccinationCharges.setText(vaccinationList.get(position).getVaccinationCharges());
     holder.binding.vaccinationTime.setText(vaccinationList.get(position).getVaccineTimings() + " - " +vaccinationList.get(position).getVaccineCenterTime());
     holder.binding.vaccinationLocation.setText(vaccinationList.get(position).getVaccineCenterAddress());
+    holder.binding.vaccinationCity.setText(vaccinationList.get(position).getCity());
 
     }
 
